@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   >
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="400dp"
+            android:layout_height="120dp"
+            android:src="@mipmap/nouser"/>
+        <Button
+            android:id="@+id/userNameBtn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="登录/注册"/>
+
+    </LinearLayout>
+
+</LinearLayout>
