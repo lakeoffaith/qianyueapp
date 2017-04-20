@@ -2,8 +2,10 @@ package com.example.black.qianyue;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.FrameLayout;
@@ -12,9 +14,9 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //UI Object
     private TextView txt_topbar;
-    private TextView txt_channel;
-    private TextView txt_message;
-    private TextView txt_better;
+    private TextView tab_main;
+    private TextView tab_doctor;
+    private TextView tab_user;
     private FrameLayout ly_content;
 
     //Fragment Object
@@ -28,27 +30,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         fManager = getFragmentManager();
         bindViews();
-        txt_channel.performClick();   //模拟一次点击，既进去后选择第一项
+        tab_main.performClick();   //模拟一次点击，既进去后选择第一项
     }
 
     //UI组件初始化与事件绑定
     private void bindViews() {
         txt_topbar = (TextView) findViewById(R.id.txt_topbar);
-        txt_channel = (TextView) findViewById(R.id.txt_channel);
-        txt_message = (TextView) findViewById(R.id.txt_message);
-        txt_better = (TextView) findViewById(R.id.txt_better);
+        tab_main = (TextView) findViewById(R.id.tab_main);
+        tab_doctor = (TextView) findViewById(R.id.tab_doctor);
+        tab_user = (TextView) findViewById(R.id.tab_user);
         ly_content = (FrameLayout) findViewById(R.id.ly_content);
-
-        txt_channel.setOnClickListener(this);
-        txt_message.setOnClickListener(this);
-        txt_better.setOnClickListener(this);
+        txt_topbar.setOnClickListener(this);
+        tab_main.setOnClickListener(this);
+        tab_doctor.setOnClickListener(this);
+        tab_user.setOnClickListener(this);
     }
 
     //重置所有文本的选中状态
     private void setSelected(){
-        txt_channel.setSelected(false);
-        txt_message.setSelected(false);
-        txt_better.setSelected(false);
+        tab_main.setSelected(false);
+        tab_doctor.setSelected(false);
+        tab_user.setSelected(false);
     }
 
     //隐藏所有Fragment
@@ -65,9 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         FragmentTransaction fTransaction = fManager.beginTransaction();
         hideAllFragment(fTransaction);
         switch (v.getId()){
-            case R.id.txt_channel:
+            case R.id.tab_main:
                 setSelected();
-                txt_channel.setSelected(true);
+                tab_main.setSelected(true);
                 if(fg1 == null){
                     fg1 = MainFragment.newInstance("第一个Fragment");
                     fTransaction.add(R.id.ly_content,fg1);
@@ -75,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     fTransaction.show(fg1);
                 }
                 break;
-            case R.id.txt_message:
+            case R.id.tab_doctor:
                 setSelected();
-                txt_message.setSelected(true);
+                tab_doctor.setSelected(true);
                 if(fg2 == null){
                     fg2 =MainFragment.newInstance("第二个Fragment");
                     fTransaction.add(R.id.ly_content,fg2);
@@ -85,9 +87,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     fTransaction.show(fg2);
                 }
                 break;
-            case R.id.txt_better:
+            case R.id.tab_user:
                 setSelected();
-                txt_better.setSelected(true);
+                tab_user.setSelected(true);
                 if(fg3 == null){
                     fg3 = new UserFragment();
                     fTransaction.add(R.id.ly_content,fg3);
