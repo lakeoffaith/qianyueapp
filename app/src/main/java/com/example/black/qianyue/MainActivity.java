@@ -13,14 +13,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //UI Object
-    private TextView txt_topbar;
     private TextView tab_main;
     private TextView tab_doctor;
     private TextView tab_user;
     private FrameLayout ly_content;
 
     //Fragment Object
-    private MainFragment fg1,fg2,fg4;
+    private MainFragment fg1;
+    private DoctorFragment fg2;
     private UserFragment fg3;
     private FragmentManager fManager;
     @Override
@@ -35,12 +35,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //UI组件初始化与事件绑定
     private void bindViews() {
-        txt_topbar = (TextView) findViewById(R.id.txt_topbar);
         tab_main = (TextView) findViewById(R.id.tab_main);
         tab_doctor = (TextView) findViewById(R.id.tab_doctor);
         tab_user = (TextView) findViewById(R.id.tab_user);
         ly_content = (FrameLayout) findViewById(R.id.ly_content);
-        txt_topbar.setOnClickListener(this);
         tab_main.setOnClickListener(this);
         tab_doctor.setOnClickListener(this);
         tab_user.setOnClickListener(this);
@@ -58,7 +56,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(fg1 != null)fragmentTransaction.hide(fg1);
         if(fg2 != null)fragmentTransaction.hide(fg2);
         if(fg3 != null)fragmentTransaction.hide(fg3);
-        if(fg4 != null)fragmentTransaction.hide(fg4);
     }
 
 
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setSelected();
                 tab_doctor.setSelected(true);
                 if(fg2 == null){
-                    fg2 =MainFragment.newInstance("第二个Fragment");
+                    fg2 =DoctorFragment.newInstance("","");
                     fTransaction.add(R.id.ly_content,fg2);
                 }else{
                     fTransaction.show(fg2);
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setSelected();
                 tab_user.setSelected(true);
                 if(fg3 == null){
-                    fg3 = new UserFragment();
+                    fg3 = UserFragment.newInstance("");
                     fTransaction.add(R.id.ly_content,fg3);
                 }else{
                     fTransaction.show(fg3);

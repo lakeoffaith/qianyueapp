@@ -2,6 +2,7 @@ package com.example.black.qianyue;
 
 import android.app.Fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,13 @@ public class MainFragment extends Fragment {
        View view= inflater.inflate(R.layout.fragment_main, container, false);
         TextView txt_content = (TextView) view.findViewById(R.id.txt_content);
         txt_content.setText(content);
+
+        Typeface font=Typeface.createFromAsset(getActivity().getAssets(),"MaterialIcons.ttf");
+
+        TextView textIcon=(TextView)view.findViewById(R.id.cropFreeIcon);
+        textIcon.setTypeface(font);
+
+
         return view;
     }
 
