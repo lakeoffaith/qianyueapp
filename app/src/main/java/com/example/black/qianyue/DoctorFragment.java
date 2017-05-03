@@ -7,6 +7,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import com.example.black.qianyue.modal.Doctor;
+import com.example.black.qianyue.modal.DoctorAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -63,7 +70,16 @@ public class DoctorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doctor, container, false);
+        List<Doctor> mData=new ArrayList<>();
+        mData.add(new Doctor("李四"));
+        mData.add(new Doctor("李五"));
+        DoctorAdapter adapter=new DoctorAdapter(mData,getActivity().getApplicationContext());
+
+        View v= inflater.inflate(R.layout.fragment_doctor, container, false);
+        ListView listContainer=(ListView) getActivity().findViewById(R.id.list_doctor);
+        listContainer.setAdapter(adapter);
+        return v;
+
     }
 
 
